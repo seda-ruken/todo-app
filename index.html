@@ -50,10 +50,17 @@
 
     <article>
       <div class="container">
-        <div>
+        <div id="imageContainer">
           <img src="/images/Detective-check-footprint 1.png" alt="Search" />
-          <h4>Empty...</h4>
+          <h4>Oops... it's empty!</h4>
         </div>
+
+        <ul id="myUL">
+          <li>Note #1</li>
+          <li class="checked">Note #2</li>
+          <li>Note #3</li>
+          <li>Note #4</li>
+        </ul>
 
         <!-- Popup Modal Box Start -->
         <div class="modal-box">
@@ -61,12 +68,16 @@
             <i class="fa-solid fa-plus"></i>
           </button>
           <!-- <span class="overlay"></span> -->
-          <div class="modal-page">
+          <div id="myDIV" class="modal-page">
             <h3>NEW NOTE</h3>
-            <input class="text modal-input" placeholder="Input your note..." />
+            <input
+              id="myInput"
+              class="text modal-input"
+              placeholder="Input your note..."
+            />
             <div class="modal-button">
               <button class="cancel">cancel</button>
-              <button class="apply">apply</button>
+              <button onclick="newElement()" class="apply addBtn">apply</button>
             </div>
           </div>
         </div>
