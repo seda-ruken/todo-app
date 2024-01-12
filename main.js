@@ -3,19 +3,19 @@ function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
   }
   
-  // Close the dropdown 
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
+// Close the dropdown 
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
       }
     }
   }
+}
 
 // Dark Mode Function
 function darkMode() {
@@ -33,8 +33,7 @@ const showModal = document.querySelector(".modal-box"),
   // overlay.addEventListener("click"), () => showModal.classList.remove("active");
   showBtn.addEventListener("click", () => showModal.classList.add("active"));
   cancelBtn.addEventListener("click", () => showModal.classList.remove("active"));
-  applyBtn.addEventListener("click", () => showModal.classList.remove("active"));  
-  
+  applyBtn.addEventListener("click", () => showModal.classList.remove("active"));
 
 // ADD TODO
 // Create a "close" button and append it to each list item
@@ -42,9 +41,8 @@ var myNodelist = document.getElementsByTagName("LI");
 var i;
 for (i = 0; i < myNodelist.length; i++) {
   var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
   span.className = "close";
-  span.appendChild(txt);
+  span.classList.add("close"); 
   myNodelist[i].appendChild(span);
 }
 
@@ -80,9 +78,8 @@ function newElement() {
   document.getElementById("myInput").value = "";
 
   var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
   span.className = "close";
-  span.appendChild(txt);
+  span.classList.add("close"); 
   li.appendChild(span);
 
   for (i = 0; i < close.length; i++) {
