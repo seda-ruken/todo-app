@@ -13,9 +13,9 @@
     />
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
     <title>To-Do App</title>
   </head>
-
   <body>
     <header>
       <h2>TODO LIST</h2>
@@ -34,10 +34,11 @@
           ALL
           <img src="images/chevron-top.svg" alt="chevron-top" />
         </button>
+
         <div id="myDropdown" class="dropdown-content">
-          <a href="#home">All</a>
-          <a href="#about">Complete</a>
-          <a href="#contact">Incomplete</a>
+          <a href="#all">All</a>
+          <a href="#complate">Complete</a>
+          <a href="#incomplate">Incomplete</a>
         </div>
       </div>
 
@@ -50,14 +51,16 @@
 
     <article>
       <div class="container">
-        <div id="imageContainer">
-          <img src="/images/Detective-check-footprint 1.png" alt="Search" />
+        <!-- <div id="imageContainer">
+          <img
+            id="image"
+            src="/images/Detective-check-footprint 1.png"
+            alt="Search"
+          />
           <h4>Oops... it's empty!</h4>
-        </div>
+        </div> -->
 
-        <ul id="myUL">
-          <li class="checked">Go to gym</li>
-        </ul>
+        <ul id="todoList"></ul>
 
         <button class="btn-add">
           <i class="fa-solid fa-plus"></i>
@@ -65,7 +68,7 @@
 
         <!-- Popup Modal Box Start -->
         <div class="modal-box">
-          <!-- <span class="overlay"></span> -->
+          <span class="overlay"></span>
           <div id="myDIV" class="modal-page">
             <h3>NEW NOTE</h3>
             <input
@@ -75,15 +78,12 @@
             />
             <div class="modal-button">
               <button class="cancel">cancel</button>
-              <button onclick="newElement()" class="apply addBtn">apply</button>
+              <button class="apply addBtn">apply</button>
             </div>
           </div>
         </div>
         <!-- Popup Modal Box End -->
       </div>
     </article>
-
-    <!-- CUSTOM JS -->
-    <script src="main.js"></script>
   </body>
 </html>

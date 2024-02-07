@@ -1,21 +1,54 @@
-// Dropdown Function 
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
+
+const todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+const showModal = document.querySelector(".modal-box");
+const showBtn = document.querySelector(".btn-add");
+const applyBtn = document.querySelector(".apply");
+const cancelBtn = document.querySelector(".cancel");
+const overlay = document.querySelector(".overlay");
+
+// MODAL PAGE 
+showBtn.addEventListener("click", () => {
+  showModal.classList.add("active");
+  overlay.classList.add("active");
+});
+
+cancelBtn.addEventListener("click", () => {
+  showModal.classList.remove("active");
+  overlay.classList.remove("active");
+});
+
+applyBtn.addEventListener("click", () => {  
+  // Input'tan değeri al
+  const inputValue = document.getElementById("myInput").value;
+  let isCompleted = false;
+  todos.push({text: inputValue, completed: isCompleted });
+
+  // Local storage'a ekle
+  updateLocalStorage();
+
+  // Boş değer kontrolü
+  if (inputValue.trim() !== '') {
+
+    // Yeni bir <li> öğesi oluştur
+    const li = document.createElement("li");
+    const textNode = document.createTextNode(inputValue);
+    li.appendChild(textNode);
   
-// Close the dropdown 
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
+    // Todo listesine ekle
+    document.getElementById("todoList").appendChild(li);
+  
+    // Input'u temizle
+    document.getElementById("myInput").value = '';    
+  
+    // Modal ve overlayı kapat 
+    showModal.classList.remove("active");
+    overlay.classList.remove("active");
+  } else {
+    alert("You must write something!");
+    // document.getElementsByClassName("container")[0].innerHTML= `<p>Not gir</p>`
   }
-}
+});
 
 // Dark Mode Function
 function darkMode() {
@@ -23,69 +56,15 @@ function darkMode() {
   element.classList.toggle("dark-mode");
 }
 
-// MODAL PAGE 
-const showModal = document.querySelector(".modal-box"),
-  // overlay = document.querySelector(".overlay"),
-  showBtn = document.querySelector(".btn-add"),
-  applyBtn = document.querySelector(".apply"),
-  cancelBtn = document.querySelector(".cancel");
-
-  // overlay.addEventListener("click"), () => showModal.classList.remove("active");
-  showBtn.addEventListener("click", () => showModal.classList.add("active"));
-  cancelBtn.addEventListener("click", () => showModal.classList.remove("active"));
-  applyBtn.addEventListener("click", () => showModal.classList.remove("active"));
-
-// ADD TODO
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  span.className = "close";
-  span.classList.add("close"); 
-  myNodelist[i].appendChild(span);
+// Local storage'ı güncelle
+function updateLocalStorage() {
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
 
-// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
-
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
-
-  var span = document.createElement("SPAN");
-  span.className = "close";
-  span.classList.add("close"); 
-  li.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElemen
-      div.style.display = "none";
-    }
-  }
-}
+// Local storage'dan değeri sil
+// function removeFromLocalStorage(value) {
+//   const todos = JSON.parse(localStorage.getItem("todos"));
+//   const filteredTodos = todos.filter(todo => todo !== value);
+//   localStorage.setItem("todos", JSON.stringify(filteredTodos));
+// }
